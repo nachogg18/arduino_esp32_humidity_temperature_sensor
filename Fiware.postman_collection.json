@@ -1,0 +1,430 @@
+{
+	"info": {
+		"_postman_id": "bf5477fd-55a9-44a2-888b-592e46b4bc7e",
+		"name": "Fiware",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Entities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{URL_FIWARE_SERVER}}:1026/v2/entities",
+					"protocol": "http",
+					"host": [
+						"{{URL_FIWARE_SERVER}}"
+					],
+					"port": "1026",
+					"path": [
+						"v2",
+						"entities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Entity",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"urn:ngsi-ld:CasaIG:001\", \r\n    \"type\": \"House\", \r\n    \"address\": { \r\n        \"type\": \"PostalAddress\", \r\n        \"value\": { \r\n            \"streetAddress\": \"Magallanes 1200\", \r\n            \"addressRegion\": \"Mendoza\", \r\n            \"addressLocality\": \"Godoy Cruz\", \r\n            \"postalCode\": \"5501\" \r\n        } \r\n    }, \r\n    \"location\": { \r\n        \"type\": \"geo:json\", \r\n        \"value\": { \r\n             \"type\": \"Point\", \r\n             \"coordinates\": [13.3986, 52.5547] \r\n        } \r\n    } \r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{URL_FIWARE_SERVER}}/v2/entities",
+					"protocol": "http",
+					"host": [
+						"{{URL_FIWARE_SERVER}}"
+					],
+					"path": [
+						"v2",
+						"entities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Sensor Temperature",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "fiware-servicepath",
+						"value": "/",
+						"type": "text"
+					},
+					{
+						"key": "fiware-service",
+						"value": "openiot",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n \"devices\": [ \r\n     { \r\n     \"device_id\":   \"TemperaturaCasaIG:001\", \r\n     \"entity_name\": \"urn:ngsd-ld:TemperaturaCasaIG:001\", \r\n     \"entity_type\": \"Sensor\", \r\n     \"timezone\":    \"America/BuenosAires\", \r\n     \"attributes\": [ \r\n       { \"object_id\": \"t\", \"name\": \"measure\", \"type\": \"Integer\" }\r\n     ], \r\n     \"static_attributes\": [ \r\n       { \"name\":\"refStore\", \"type\": \"Relationship\", \"value\": \"urn:ngsi-ld:CasaIG:001\"} \r\n     ] \r\n   } \r\n ] \r\n} \r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{URL_FIWARE_SERVER}}/iot/devices",
+					"protocol": "http",
+					"host": [
+						"{{URL_FIWARE_SERVER}}"
+					],
+					"path": [
+						"iot",
+						"devices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Sensor Humidity",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "fiware-servicepath",
+						"value": "/",
+						"type": "text"
+					},
+					{
+						"key": "fiware-service",
+						"value": "openiot",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n \"devices\": [ \r\n     { \r\n     \"device_id\":   \"HumedadCasaIG:001\", \r\n     \"entity_name\": \"urn:ngsd-ld:HumedadCasaIG:001\", \r\n     \"entity_type\": \"Sensor\", \r\n     \"timezone\":    \"America/BuenosAires\", \r\n     \"attributes\": [ \r\n       { \"object_id\": \"h\", \"name\": \"measure\", \"type\": \"Integer\" }\r\n     ], \r\n     \"static_attributes\": [ \r\n       { \"name\":\"refStore\", \"type\": \"Relationship\", \"value\": \"urn:ngsi-ld:CasaIG:001\"} \r\n     ] \r\n   } \r\n ] \r\n} \r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{URL_FIWARE_SERVER}}/iot/devices",
+					"protocol": "http",
+					"host": [
+						"{{URL_FIWARE_SERVER}}"
+					],
+					"path": [
+						"iot",
+						"devices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sensors",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "fiware-servicepath",
+						"value": "/",
+						"type": "text"
+					},
+					{
+						"key": "fiware-service",
+						"value": "openiot",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{URL_FIWARE_SERVER}}/iot/devices/",
+					"protocol": "http",
+					"host": [
+						"{{URL_FIWARE_SERVER}}"
+					],
+					"path": [
+						"iot",
+						"devices",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegisterKey",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "fiware-servicepath",
+						"value": "/",
+						"type": "text"
+					},
+					{
+						"key": "fiware-service",
+						"value": "openiot",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n \"services\": [ \r\n   { \r\n     \"apikey\":      \"{{API_KEY}}\", \r\n     \"cbroker\":     \"http://orion:1026\", \r\n     \"entity_type\": \"Thing\", \r\n     \"resource\":    \"/iot/d\" \r\n   } \r\n ] \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{URL_FIWARE_SERVER}}/iot/services",
+					"protocol": "http",
+					"host": [
+						"{{URL_FIWARE_SERVER}}"
+					],
+					"path": [
+						"iot",
+						"services"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Sensor",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "fiware-servicepath",
+						"value": "/",
+						"type": "text"
+					},
+					{
+						"key": "fiware-service",
+						"value": "openiot",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n \"devices\": [ \r\n     { \r\n     \"device_id\":   \"TempCasaIG:001\", \r\n     \"entity_name\": \"urn:ngsi-ld:TempCasaIG:001\", \r\n     \"entity_type\": \"Sensor\", \r\n     \"timezone\":    \"America/BuenosAires\", \r\n     \"attributes\": [ \r\n       { \"object_id\": \"t\", \"name\": \"measure\", \"type\": \"Integer\"}\r\n     ], \r\n     \"static_attributes\": [ \r\n       { \"name\":\"refStore\", \"type\": \"Relationship\", \"value\": \"urn:ngsi-ld:CasaIG:001\"} \r\n     ] \r\n   } \r\n ] \r\n} \r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{URL_FIWARE_SERVER}}/iot/devices",
+					"protocol": "http",
+					"host": [
+						"{{URL_FIWARE_SERVER}}"
+					],
+					"path": [
+						"iot",
+						"devices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Suscription quantum leap",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"connection": true,
+					"accept-encoding": true,
+					"accept": true,
+					"user-agent": true,
+					"host": true,
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "fiware-service",
+						"value": "openiot",
+						"type": "text"
+					},
+					{
+						"key": "fiware-servicepath",
+						"value": "/",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"Notify Quantum Leap about TemperaturaCasaIG001\",\r\n    \"subject\": {\r\n        \"entities\": [\r\n            {\r\n                \"idPattern\": \"TemperaturaCasaIG.*\"\r\n            }\r\n        ],\r\n        \"condition\": {\r\n            \"attrs\": [\r\n                \"measure\"\r\n            ]\r\n        }\r\n    },\r\n    \"notification\": {\r\n        \"http\": {\r\n            \"url\": \"http://quantum-leap:8668/v2/notify\"\r\n        },\r\n        \"attrs\": [\r\n            \"measure\"\r\n        ],\r\n        \"metadata\": [\r\n            \"dateCreated\",\r\n            \"dateModified\"\r\n        ]\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{URL_FIWARE_SERVER}}/v2/subscriptions",
+					"protocol": "http",
+					"host": [
+						"{{URL_FIWARE_SERVER}}"
+					],
+					"path": [
+						"v2",
+						"subscriptions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send measure",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "fiware-service",
+						"value": "openion",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "fiware-servicepath",
+						"value": "/",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "t|100",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{URL_FIWARE_SERVER}}/iot/d?k=2tggokgpepnvsb2uv4s40d59oc&i=TemperaturaCasaIG:001",
+					"protocol": "http",
+					"host": [
+						"{{URL_FIWARE_SERVER}}"
+					],
+					"path": [
+						"iot",
+						"d"
+					],
+					"query": [
+						{
+							"key": "k",
+							"value": "2tggokgpepnvsb2uv4s40d59oc"
+						},
+						{
+							"key": "i",
+							"value": "TemperaturaCasaIG:001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sensor State",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "Delete sensor",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "fiware-service",
+						"value": "openiot",
+						"type": "text"
+					},
+					{
+						"key": "fiware-servicepath",
+						"value": "/",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://147.182.194.244:4041/iot/devices/TemperaturaCasaIG:001",
+					"protocol": "http",
+					"host": [
+						"147",
+						"182",
+						"194",
+						"244"
+					],
+					"port": "4041",
+					"path": [
+						"iot",
+						"devices",
+						"TemperaturaCasaIG:001"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "URL_FIWARE_SERVER",
+			"value": "147.182.194.244"
+		},
+		{
+			"key": "TEMPERATURE_SENSOR_NAME",
+			"value": "TemperaturaCasaIG:001"
+		},
+		{
+			"key": "API_KEY",
+			"value": "2tggokgpepnvsb2uv4s40d59oc"
+		}
+	]
+}
